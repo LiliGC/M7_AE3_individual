@@ -1,12 +1,9 @@
-# M7 AE2 individual
+# M7 AE3 individual
 
 **Liliana Garmendia**
 
-Este proyecto es una continuación de M7 AE1 individual que está en esta cuenta, en esta oportunidad se ha incluido los comentarios al sitio web mediante un formulario de contacto con opciones de mensaje de consulta, felicitación, sugerencia o reclamo. Se puede acceder sin estar registrado mediante el enlace en la barra de navegación Contáctanos. Si ha iniciado sesión tiene acceso a ver la lista de comentarios y puede acceder a editar o eliminar los que haya enviado. Se pusó la restricción en la views de @login_required y en el template de acceso a editar o eliminar si el usuario que ha iniciado sesión es el mismo que creó el comentario le aparecerán los botones para editar o eliminar. 
-
-Además se agregó el CRUD para los clientes y profesionales, por lo que cada uno cuenta con formulario de registro, edición, eliminación y ver el listado con datatable con las opciones de descargar un pdf en los botones de las tablas. Desde el sitio web para acceder a modificar o eliminar éstos necesita ser parte del staff, por lo que en las views se agregó la restricción  @staff_required.
-
-Se cambió también la base de datos a Mysql, y se modificó el admin de django con django interface.
+Este proyecto es una continuación de M7 DJANGO individual que está en esta cuenta, en esta oportunidad se ha incluido los modelos de productos y de servicios y la relación de uno a uno, uno a muchos y muchos a muchos. 
+Además se agregó el CRUD para productos y servicios, por lo que cada uno cuenta con formulario de registro, edición, eliminación y ver el listado con datatable con las opciones de descargar un pdf en los botones de las tablas. Desde el sitio web para acceder a modificar o eliminar éstos necesita ser parte del staff, por lo que en las views se agregó la restricción  @staff_required.
 
 ## Instrucciones para instalación
 
@@ -14,7 +11,7 @@ Se cambió también la base de datos a Mysql, y se modificó el admin de django 
 
 -Clonar el repositorio usando gitbash o el terminal que tenga en su computador local con el siguiente comando:
 
-``` git clone https://github.com/LiliGC/M7_DJANGO_individual.git ```
+``` git clone https://github.com/LiliGC/M7_AE3_individual.git ```
 -Abrir la carpeta con el repositorio clonado en un editor de texto como Visual Studio Code con la opción indicada en la imagen.
 ![vscode](labtienda/static/img/visualcode.png)
 -Abrir un nuevo terminal en Visual Studio Code y crear el entorno virtual con el siguiente comando:

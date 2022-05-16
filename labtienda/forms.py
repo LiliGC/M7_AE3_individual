@@ -1,5 +1,5 @@
 from django import forms
-from .models import Client, Professional, Comentario
+from .models import Client, Professional, Comentario, Producto
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -36,3 +36,8 @@ class ComentarioForm(forms.ModelForm):
     class Meta:
         model=Comentario
         fields=['nombre', 'correo_electronico', 'tipo_consulta', 'mensaje']    
+
+class ProductoForm(forms.ModelForm):
+    class Meta:
+        model=Producto
+        fields=['categoria', 'nombre', 'marca', 'imagen', 'descripción','precio', 'stock']   

@@ -1,5 +1,6 @@
 from django.db import models
 import datetime
+from django.utils.text import slugify
 
 
 
@@ -44,6 +45,50 @@ class Comentario(models.Model):
     def __str__(self): 
         return self.nombre
 
+class Marca(models.Model):
+    nombre= models.CharField(max_length=30)
 
+    def __str__(self): 
+        return self.nombre
 
+class Categoria(models.Model):
+    nombre=models.CharField(max_length=50, db_index=True)
+    slug=models.SlugField(max_length=50, db_index=True, unique=True)
 
+    class Meta:
+        ordering=('nombre',)
+        verbose_name='categoría'
+        verbose_name_plural='categorías'
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug=slugify(self.name)
+        super(Categoria, self).save(*args, **kwargs)
+
+    def __str__(self): 
+        return self.nombre
+
+class Producto(models.Model):
+    categoria=models.ForeignKey(Categoria, null=True, on_delete=models.CASCADE)
+    nombre=models.CharField(max_length=50, db_index=True)
+    slug=models.SlugField(max_length=50, db_index=True, unique=True)
+    marca=models.ForeignKey(Marca, on_delete=models.PROTECT)
+    imagen=models.ImageField(upload_to='productos')
+    descripción=models.TextField(blank=True)
+    precio=models.IntegerField()
+    stock=models.PositiveIntegerField()
+    disponible=models.BooleanField(default=True)
+    creado=models.DateTimeField(auto_now_add=True)
+    actualizado=models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering=('nombre',)
+        index_together=(('id', 'slug'),)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug=slugify(self.name)
+        super(Producto, self).save(*args, **kwargs)
+
+    def __str__(self): 
+        return self.nombre
