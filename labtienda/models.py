@@ -62,7 +62,7 @@ class Categoria(models.Model):
     
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug=slugify(self.name)
+            self.slug=slugify(self.nombre)
         super(Categoria, self).save(*args, **kwargs)
 
     def __str__(self): 
@@ -87,7 +87,7 @@ class Producto(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug=slugify(self.name)
+            self.slug=slugify(self.nombre)
         super(Producto, self).save(*args, **kwargs)
 
     def __str__(self): 

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Client, Professional, Comentario
-from .forms import ClienteForm,ProfessionalForm, ComentarioForm
+from .models import Client, Professional, Comentario, Producto
+from .forms import ClienteForm,ProfessionalForm, ComentarioForm, ProductoForm
 from .forms import NewUserForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
@@ -245,3 +245,60 @@ def comentario_delete(request,pk):
     comentario.delete()
     messages.warning(request, 'Esta seguro que desea eliminar su mensaje?')        
     return redirect('listacomentarios')
+
+@staff_member_required
+@login_required
+def registro_producto(request):
+
+    form=ProductoForm() 
+
+    if request.method == 'POST': 
+
+        form = ProductoForm(request.POST, request.FILES)
+
+        if form.is_valid(): 
+            producto=Producto()
+            producto.categoria=form.cleaned_data["categoria"]
+            producto.nombre=form.cleaned_data["nombre"]
+            producto.marca=form.cleaned_data["marca"]
+            producto.imagen=form.cleaned_data["imagen"]
+            producto.descripción=form.cleaned_data["descripción"]
+            producto.precio=form.cleaned_data["precio"]
+            producto.stock=form.cleaned_data["stock"]
+            producto.save()
+            messages.success(request, 'Los datos han sido guardados satisfactoriamente') 
+            return redirect('productos') 
+
+        else: messages.error(request,'Inválido') 
+
+        return redirect('registro_productos') 
+
+    else: 
+
+        form=ProductoForm()  
+
+        return render(request, 'labtienda/registro_productos.html', {"form":form}) 
+
+@staff_member_required
+@login_required
+def productos_edit(request,pk):
+    producto = get_object_or_404(Producto, pk=pk)
+    if request.method == "POST":
+        form = ProductoForm(request.POST, instance=cliente)
+        if form.is_valid():
+            producto = form.save(commit=False)
+            producto.save()
+            messages.success(request, 'El producto se ha modificado con éxito')
+            return redirect('productos')
+    else:
+        form = ProductoForm(instance=producto)
+    return render(request, 'labtienda/productos_edit.html', {'form': form})
+
+@staff_member_required
+@login_required
+def productos_delete(request,pk):
+    producto = get_object_or_404(Producto, pk=pk)
+    producto.delete()
+    messages.success(request, 'El producto se ha eliminado con exito')        
+    return redirect('productos')
+
