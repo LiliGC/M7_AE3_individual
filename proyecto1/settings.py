@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'colorfield',
     'labtienda',
+    'django.contrib.humanize',
+    'sorl.thumbnail'
 ]
 
 X_FRAME_OPTIONS='SAMEORIGIN'

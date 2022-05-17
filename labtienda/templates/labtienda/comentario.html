@@ -20,21 +20,9 @@
                     </div>
                 </form>
                 {% if user.is_authenticated %}
-                        <a href="{% url 'listacomentarios'  %}" class="btn btn-info">Lista comentarios</a></td>
+                        <a href="{% url 'miscomentarios'  %}" class="btn btn-info">Lista comentarios</a></td>
                 {% endif %}
             {% block additionaljs %}
-                {% if messages %}
-                <script>
-                    {% for message in messages %}
-                        {% if message.success %} class="{{ message.success}}"{% endif %}
-                            Swal.fire({
-                                title: 'Felicitaciones',
-                                text: '{{message}} ',
-                                icon: 'success'
-                            });
-                    {% endfor %}
-                </script>   
-                {% endif %} 
             {% endblock %}    
             </div>    
         </div>

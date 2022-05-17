@@ -226,6 +226,19 @@ def listacomentarios(request):
     return render(request,'labtienda/listacomentarios.html', context)
 
 @login_required
+def miscomentarios(request):
+
+    email=request.user.email
+    micomentario=Comentario.objects.filter(correo_electronico=email).all()
+
+    context = { 
+
+    'comentarios': micomentario, 
+
+    } 
+    return render(request,'labtienda/miscomentarios.html', context)
+
+@login_required
 def comentario_edit(request,pk):
     comentario = get_object_or_404(Comentario, pk=pk)
     if request.method == "POST":
@@ -243,7 +256,7 @@ def comentario_edit(request,pk):
 def comentario_delete(request,pk):
     comentario = get_object_or_404(Comentario, pk=pk)
     comentario.delete()
-    messages.warning(request, 'Esta seguro que desea eliminar su mensaje?')        
+    messages.warning(request, 'Tu no podrás revertir esto!')        
     return redirect('listacomentarios')
 
 @staff_member_required
@@ -284,7 +297,7 @@ def registro_producto(request):
 def productos_edit(request,pk):
     producto = get_object_or_404(Producto, pk=pk)
     if request.method == "POST":
-        form = ProductoForm(request.POST, instance=cliente)
+        form = ProductoForm(request.POST, instance=producto)
         if form.is_valid():
             producto = form.save(commit=False)
             producto.save()
@@ -301,4 +314,29 @@ def productos_delete(request,pk):
     producto.delete()
     messages.success(request, 'El producto se ha eliminado con exito')        
     return redirect('productos')
+
+@staff_member_required
+@login_required
+def productos(request):
+
+    producto=Producto.objects.all()
+
+    context = { 
+
+    'productos': producto, 
+
+    } 
+    return render(request,'labtienda/productos.html', context)
+
+@login_required
+def catalogo_productos(request):
+
+    producto=Producto.objects.all()
+
+    context = { 
+
+    'productos': producto, 
+
+    } 
+    return render(request,'labtienda/catalogo_productos.html', context)
 

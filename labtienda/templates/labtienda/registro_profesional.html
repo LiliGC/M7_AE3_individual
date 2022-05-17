@@ -21,18 +21,6 @@
                     </div>
                 </form>
             {% block additionaljs %}
-                {% if messages %}
-                <script>
-                    {% for message in messages %}
-                        {% if message.success %} class="{{ message.success}}"{% endif %}
-                            Swal.fire({
-                                title: 'Felicitaciones',
-                                text: '{{message}} ',
-                                icon: 'success'
-                            });
-                    {% endfor %}
-                </script>   
-                {% endif %} 
             {% endblock %}    
             </div>    
         </div>
