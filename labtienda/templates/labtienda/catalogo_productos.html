@@ -16,8 +16,9 @@
             <div class= "contenedor_producto">
 
                 {% if p.imagen %}
-                    {% thumbnail p.imagen '150x150' as im %}
-                    <img src="{{ p.imagen.url }}" alt="imagen producto">
+                    {% thumbnail p.imagen '300x150' as imagen %}
+                        <img src="{{ imagen.url }}" alt="imagen producto">
+                    {% endthumbnail%}
                 {% endif %}
                 <div class="detalle">
                     <h6 class="text-dark text-start">{{ p.marca | capfirst }}</h6>

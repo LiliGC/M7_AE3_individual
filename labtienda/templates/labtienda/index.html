@@ -51,15 +51,14 @@
                         {% if user.is_authenticated %}
                             <a class="nav-link" href="#">Bienvenido, {{user.username}}</a>
                             <a class="btn btn-link btn-block border-bottom m-0" href="{% url 'index' %}">Inicio</a>
-                            <a class="nav-link btn btn-link btn-block border-bottom m-0" href="{% url 'index' %}" >Productos</a>
+                            <a class="nav-link btn btn-link btn-block border-bottom m-0" href="{% url 'catalogo_productos' %}" >Productos</a>
                             <a class="nav-link btn btn-link btn-block border-bottom m-0" href="{% url 'comentario' %}" >Contáctanos</a>
                             <a class="nav-link btn btn-link btn-block border-bottom m-0" href="{% url 'miscomentarios' %}" >Mis mensajes</a>
-                            <a class="nav-link btn btn-link btn-block border-bottom m-0" href="{% url 'catalogo_productos' %}" >Catálogo de productos</a>
                             {% if user.is_staff %}
+                                <a class="nav-link btn btn-link btn-block border-bottom m-0" href="{% url 'listacomentarios' %}" >Comentarios</a>
                                 <a class="nav-link btn btn-link btn-block border-bottom m-0"href="{% url 'clientes' %}">Clientes</a>
                                 <a class="nav-link btn btn-link btn-block border-bottom m-0" href="{% url 'profesional' %}" >Profesionales</a>
                                 <a class="nav-link btn btn-link btn-block border-bottom m-0" href="{% url 'productos' %}" >Lista de productos</a>
-                                <a class="nav-link btn btn-link btn-block border-bottom m-0" href="{% url 'listacomentarios' %}" >Comentarios</a>
                             {% endif %}
                             <a class="nav-link btn btn-link btn-block border-bottom m-0"href="{% url 'logout' %}">Salir</a>
                         {% else %}
