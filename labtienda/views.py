@@ -206,7 +206,7 @@ def comentario(request):
             comentario.tipo_consulta=form.cleaned_data["tipo_consulta"]
             comentario.mensaje=form.cleaned_data["mensaje"]
             comentario.save()
-            messages.success(request, 'Su  mensaje ha sido enviado satisfactoriamente')
+            messages.success(request, 'Su  mensaje ha sido enviado satisfactoriamente, nos pondremos en contacto con usted.')
         else: messages.error('Inválido')
         return redirect('index')
     else:

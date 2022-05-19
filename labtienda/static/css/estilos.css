@@ -1,8 +1,6 @@
-h1 {
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+body {
     font-family: 'Open Sans', sans-serif;
-    font-size: medium;
-    color: antiquewhite;
-    font-size: 30;
 }
 
 .asteriskField {

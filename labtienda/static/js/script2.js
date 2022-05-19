@@ -1,8 +1,26 @@
 $(document).ready(function() {
     $('#clientes').DataTable({
         dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
+        buttons: [{
+                extend: 'copyHtml5',
+                text: '<i class="fa fa-files-o"></i>',
+                titleAttr: 'Copy'
+            },
+            {
+                extend: 'excelHtml5',
+                text: '<i class="fa fa-file-excel-o"></i>',
+                titleAttr: 'Excel'
+            },
+            {
+                extend: 'csvHtml5',
+                text: '<i class="fa fa-file-text-o"></i>',
+                titleAttr: 'CSV'
+            },
+            {
+                extend: 'pdfHtml5',
+                text: '<i class="fa fa-file-pdf-o"></i>',
+                titleAttr: 'PDF'
+            }
         ],
         language: {
             "decimal": "",
@@ -17,11 +35,11 @@ $(document).ready(function() {
             "processing": "Procesando...",
             "search": "Buscar:",
             "zeroRecords": "No se encontraron coincidencias",
-            "paginate": {
-                "first": "Primero",
-                "last": "Ultimo",
-                "next": "Sig",
-                "previous": "Ant"
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Ultimo",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
             },
             "aria": {
                 "sortAscending": ": Activar orden de columna ascendente",
