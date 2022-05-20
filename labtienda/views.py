@@ -340,3 +340,4 @@ def catalogo_productos(request):
     } 
     return render(request,'labtienda/catalogo_productos.html', context)
 
+
